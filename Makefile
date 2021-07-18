@@ -4,7 +4,7 @@ CC=g++
 LDFLAGS+=-lX11 -lXcursor -lXext -lXrandr
 CFLAGS= -g -Wall -Wextra -pedantic
 
-all:clean build
+all:build
 clean:
 	rm lde
 build: main.cpp Makefile
