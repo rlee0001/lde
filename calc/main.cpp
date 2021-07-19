@@ -2,6 +2,8 @@
 #include <X11/StringDefs.h>
 #include <X11/Xaw/Label.h>
 
+#include<iostream>
+
 int main(int argc, char* argv[])
 {
     XtAppContext app_context;
@@ -25,5 +27,5 @@ int main(int argc, char* argv[])
 
 void onClick(Widget widget, XtPointer client_data, XtPointer call_data)
 {
-   printf("Hello Yourself!");
+    cout << "Hello Yourself!" << endl;
 }
