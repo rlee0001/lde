@@ -1,6 +1,7 @@
 #include <X11/Intrinsic.h>
 #include <X11/StringDefs.h>
 #include <X11/Xaw/Label.h>
+#include <Xm/Xm.h>
 
 int main(int argc, char* argv[])
 {
