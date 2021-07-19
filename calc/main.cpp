@@ -4,6 +4,8 @@
 
 #include<iostream>
 
+using namespace std;
+
 void onClick(Widget widget, XtPointer client_data, XtPointer call_data)
 {
     cout << "Hello Yourself!" << endl;
