@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 
     hello = XtVaCreateManagedWidget("hello", labelWidgetClass, toplevel, NULL);
 
-    XtAddCallback(hello, XmNactivateCallback, onClick, NULL);
+    XtAddCallback(hello, XtNcallback, onClick, NULL);
 
     XtRealizeWidget(toplevel);
     XtAppMainLoop(app_context);
