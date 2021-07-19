@@ -4,6 +4,11 @@
 
 #include<iostream>
 
+void onClick(Widget widget, XtPointer client_data, XtPointer call_data)
+{
+    cout << "Hello Yourself!" << endl;
+}
+
 int main(int argc, char* argv[])
 {
     XtAppContext app_context;
@@ -23,9 +28,4 @@ int main(int argc, char* argv[])
 
     XtRealizeWidget(toplevel);
     XtAppMainLoop(app_context);
-}
-
-void onClick(Widget widget, XtPointer client_data, XtPointer call_data)
-{
-    cout << "Hello Yourself!" << endl;
 }
