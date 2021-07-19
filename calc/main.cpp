@@ -17,6 +17,13 @@ int main(int argc, char* argv[])
 
     hello = XtVaCreateManagedWidget("hello", labelWidgetClass, toplevel, NULL);
 
+    XtAddCallback(hello, XmNactivateCallback, onClick, NULL);
+
     XtRealizeWidget(toplevel);
     XtAppMainLoop(app_context);
+}
+
+void onClick(Widget widget, XtPointer client_data, XtPointer call_data)
+{
+   printf("Hello Yourself!");
 }
