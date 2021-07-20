@@ -2,7 +2,7 @@ SHELL=/bin/sh
 
 CC=g++
 LDFLAGS+=-lXaw -lXt -lX11 -lXcursor -lXext -lXrandr -lcairo
-CFLAGS=-g -Wall -Wextra -pedantic
+CFLAGS=-std=c++2b -g -Wall -Wextra -pedantic
 DIST=dist/
 WM=${DIST}lde-wm
 CALC=${DIST}lde-calc

@@ -5,9 +5,7 @@
 #include<cairo/cairo.h>
 #include<cairo/cairo-xlib.h>
 
-#include<chrono>
 #include<iostream>
-#include<thread>
 
 using namespace std;
 
@@ -24,25 +22,21 @@ int main(int argc, char* argv[])
     Window root = DefaultRootWindow(d);
     int default_screen = XDefaultScreen(d);
 
-    XSetWindowAttributes attrs;
-    attrs.override_redirect = true;
-
     XVisualInfo vinfo;
-    if (!XMatchVisualInfo(d, DefaultScreen(d), 32, TrueColor, &vinfo))
+    if (!XMatchVisualInfo(d, default_screen, 32, TrueColor, &vinfo))
     {
         cout << "No visual found supporting 32-bit color." << endl;
         return 1;
     }
 
+    XSetWindowAttributes attrs;
+    attrs.override_redirect = true;
     attrs.colormap = XCreateColormap(d, root, vinfo.visual, AllocNone);
     attrs.background_pixel = 0;
     attrs.border_pixel = 0;
 
     Window overlay = XCreateWindow(
-        d, root,
-        0, 0, 200, 200, 0,
-        vinfo.depth, InputOutput,
-        vinfo.visual,
+        d, root, 0, 0, 200, 200, 0, vinfo.depth, InputOutput, vinfo.visual,
         CWOverrideRedirect | CWColormap | CWBackPixel | CWBorderPixel, &attrs
     );
 
@@ -54,7 +48,24 @@ int main(int argc, char* argv[])
     draw(cr);
     XFlush(d);
 
-    this_thread::sleep_for(chrono::milliseconds(10000));
+    static bool run = true;
+    XEvent xEvent;
+
+    while (run)
+    {
+        do
+        {
+            XNextEvent(lDisplay, &xEvent);
+
+            cout << "Event: " << event.type << endl;
+
+            switch (xEvent.type)
+            {
+            case XButtonReleasedEvent:
+                run = false;
+            }
+        } while (XPending(GetMainDisplay()));
+    }
 
     cairo_destroy(cr);
     cairo_surface_destroy(surf);
