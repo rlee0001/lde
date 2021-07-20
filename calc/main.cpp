@@ -49,23 +49,20 @@ int main(int argc, char* argv[])
     draw(cr);
     XFlush(d);
 
-    static bool run = true;
+    bool run = true;
     XEvent xEvent;
 
     while (run)
     {
-        do
+        XNextEvent(d, &xEvent);
+
+        cout << "Event: " << xEvent.type << endl;
+
+        switch (xEvent.type)
         {
-            XNextEvent(d, &xEvent);
-
-            cout << "Event: " << xEvent.type << endl;
-
-            switch (xEvent.type)
-            {
-            case ButtonRelease:
-                run = false;
-            }
-        } while (XPending(d));
+        case ButtonRelease:
+            run = false;
+        }
     }
 
     cairo_destroy(cr);
