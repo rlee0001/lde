@@ -1,8 +1,8 @@
 SHELL=/bin/sh
 
 CC=g++
-LDFLAGS+=-lXaw -lXt -lX11 -lXcursor -lXext -lXrandr
-CFLAGS= -g -Wall -Wextra -pedantic
+LDFLAGS+=-lXaw -lXt -lX11 -lXcursor -lXext -lXrandr -lcairo
+CFLAGS=-g -Wall -Wextra -pedantic
 DIST=dist/
 WM=${DIST}lde-wm
 CALC=${DIST}lde-calc
