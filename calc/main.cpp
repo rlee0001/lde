@@ -34,6 +34,7 @@ int main(int argc, char* argv[])
     attrs.colormap = XCreateColormap(d, root, vinfo.visual, AllocNone);
     attrs.background_pixel = 0;
     attrs.border_pixel = 0;
+    attrs.event_mask = KeyPressMask | KeyReleaseMask | ButtonPressMask | ButtonReleaseMask;
 
     Window overlay = XCreateWindow(
         d, root, 0, 0, 200, 200, 0, vinfo.depth, InputOutput, vinfo.visual,
@@ -55,16 +56,16 @@ int main(int argc, char* argv[])
     {
         do
         {
-            XNextEvent(lDisplay, &xEvent);
+            XNextEvent(d, &xEvent);
 
-            cout << "Event: " << event.type << endl;
+            cout << "Event: " << xEvent.type << endl;
 
             switch (xEvent.type)
             {
-            case XButtonReleasedEvent:
+            case ButtonRelease:
                 run = false;
             }
-        } while (XPending(GetMainDisplay()));
+        } while (XPending(d));
     }
 
     cairo_destroy(cr);
