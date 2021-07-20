@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
 
     Window overlay = XCreateWindow(
         d, root, 0, 0, 200, 200, 0, vinfo.depth, InputOutput, vinfo.visual,
-        CWOverrideRedirect | CWColormap | CWBackPixel | CWBorderPixel, &attrs
+        CWOverrideRedirect | CWColormap | CWBackPixel | CWBorderPixel | CWEventMask, &attrs
     );
 
     XMapWindow(d, overlay);
